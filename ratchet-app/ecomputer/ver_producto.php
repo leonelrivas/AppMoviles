@@ -1,4 +1,4 @@
-<<?php
+<?php
 session_start();
 require('../class/conn.php');
 
@@ -6,13 +6,14 @@ if(!isset($_SESSION['id'])){
     header("location: ../");
 }
 else{
-    $sql = "Select * from categoria";
-    $result = $mysqli->query($sql);
-    $rows = $result->num_rows;
-    
-    if($rows > 0){
+    if(isset($_GET['produc'])){
+        $idpro = $_GET['produc'];
+        $sql = "Select * from productos where idproductos	 = $idpro";
+        $result = $mysqli->query($sql);
+        $r = $result->fetch_array(MYSQL_ASSOC);
+        
 ?>
-<html>
+ <html>
   <head>
     <meta charset="utf-8">
     <title>eComputer</title>
@@ -28,32 +29,27 @@ else{
     <link href="../ratchet-2.0.2/dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="../ratchet-2.0.2/dist/js/ratchet.js"></script>
+    <script src="../ratchet-2.0.2/dist/js/ratchet.min.js"></script>
   </head>
   <body>
 
     <!-- Make sure all your bars are the first things in your <body> -->
     <header class="bar bar-nav">
-      <h1 class="title">Ecomputer</h1>
+      <h1 class="title">Productos</h1>
     </header>
 
     <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
     <div class="content">
-      <p class="content-padded">
-        Nuestras categorias:
-      </p>
-      <ul class="table-view">
-         <?php while($r = $result->fetch_array(MYSQLI_ASSOC)){ ?>
-          <li class="table-view-cell">
-            <a class="navigate-right" href="detalle_cat.php?cat=<?php echo $r['idcategoria']; ?>">
-                <?php echo $r['categoria']; ?>
-            </a>
-          </li>
-          <?php }} ?>
-      </ul>
+     <div class="content-padded">
+         <img src="<?php echo $r['url']; ?>" alt="imagen de producto" width="350px" height="350px">
+         <h4><?php echo $r['nombre']; ?></h4>
+         <p><?php echo $r['descripcion']; ?></p>
+         <h5>Precio: &#36;<?php echo $r['precio']?></h5>
+         <a href=""><button class="btn btn-positive btn-block">Choose existing</button></a>
+     </div>
     </div>
     <nav class="bar bar-tab">
-      <a class="tab-item active" href="#">
+      <a class="tab-item" href="../index.php">
         <span class="icon icon-home"></span>
         <span class="tab-label">Inicio</span>
       </a>
@@ -61,7 +57,7 @@ else{
         <span class="icon icon-person"></span>
         <span class="tab-label">Yo</span>
       </a>
-      <a class="tab-item" href="../ecomputer/categorias.php">
+      <a class="tab-item active" href="../ecomputer/categorias.php">
         <span class="icon icon-list"></span>
         <span class="tab-label">Categorias</span>
       </a>
@@ -70,6 +66,6 @@ else{
         <span class="tab-label">Carrito</span>
       </a>
     </nav>
+    <?php mysqli_free_result($result);}}  ?>
   </body>
-  <?php } ?>
 </html>

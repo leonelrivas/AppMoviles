@@ -28,7 +28,7 @@ else{
     <link href="../ratchet-2.0.2/dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="../ratchet-2.0.2/dist/js/ratchet.js"></script>
+    <script src="../ratchet-2.0.2/dist/js/ratchet.min.js"></script>
   </head>
   <body>
 
