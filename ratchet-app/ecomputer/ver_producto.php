@@ -29,7 +29,7 @@ else{
     <link href="../ratchet-2.0.2/dist/css/ratchet.css" rel="stylesheet">
 
     <!-- Include the compiled Ratchet JS -->
-    <script src="../ratchet-2.0.2/dist/js/ratchet.min.js"></script>
+    <script src="../ratchet-2.0.2/dist/js/ratchet.js"></script>
   </head>
   <body>
 
@@ -40,13 +40,14 @@ else{
 
     <!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
     <div class="content">
-     <div class="content-padded">
+        <!-- DIV para mostrar el detalle del producto -->
+        <div class="content-padded">
          <img src="<?php echo $r['url']; ?>" alt="imagen de producto" width="350px" height="350px">
          <h4><?php echo $r['nombre']; ?></h4>
          <p><?php echo $r['descripcion']; ?></p>
          <h5>Precio: &#36;<?php echo $r['precio']?></h5>
-         <a href=""><button class="btn btn-positive btn-block">Choose existing</button></a>
-     </div>
+         <a href="carrito.php?pro=<?php echo $r['idproductos']; ?>"><button class="btn btn-positive btn-block">Agregar a carrito</button></a>
+        </div>
     </div>
     <nav class="bar bar-tab">
       <a class="tab-item" href="../index.php">
@@ -61,7 +62,7 @@ else{
         <span class="icon icon-list"></span>
         <span class="tab-label">Categorias</span>
       </a>
-      <a class="tab-item" href="#">
+      <a class="tab-item" href="../ecomputer/carrito.php">
         <span class="icon icon-compose"></span>
         <span class="tab-label">Carrito</span>
       </a>

@@ -65,7 +65,7 @@ else{
         <span class="icon icon-list"></span>
         <span class="tab-label">Categorias</span>
       </a>
-      <a class="tab-item" href="#">
+      <a class="tab-item" href="../ecomputer/carrito.php">
         <span class="icon icon-compose"></span>
         <span class="tab-label">Carrito</span>
       </a>
